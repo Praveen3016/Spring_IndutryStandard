@@ -7,10 +7,7 @@ import com.softtech.demo.services.UserServices;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Api/user")
@@ -19,7 +16,7 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
-    @PostMapping(value = "user_add_")
+    @PostMapping(value = "user_add")
     public CommonRespModal addUser(@RequestBody UserAddReqModal request) {
         return userServices.addUser(request);
     }
@@ -28,5 +25,15 @@ public class UserController {
     @PostMapping(value = "get_user_list")
     public CommonRespModal getUserList(@RequestBody CommonReqModal request) {
         return userServices.getUserList(request);
+    }
+
+    @PutMapping(value = "update_user")
+    public CommonRespModal updateUser(@RequestBody UserAddReqModal request) {
+        return userServices.updateUser(request);
+    }
+
+    @DeleteMapping(value = "delete_user")
+    public CommonRespModal deleteUser(@RequestBody UserAddReqModal request) {
+        return userServices.deleteUser(request);
     }
 }
